@@ -1,4 +1,4 @@
-package org.io.spring.product;
+package org.io.spring.domain.product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,11 +9,12 @@ import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.io.spring.domain.BaseEntity;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Product {
+public class Product extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +26,7 @@ public class Product {
   private ProductType type;
 
   @Enumerated(EnumType.STRING)
-  private ProductSellingType sellingType;
+  private ProductSellingStatus sellingStatus;
 
   private String name;
 

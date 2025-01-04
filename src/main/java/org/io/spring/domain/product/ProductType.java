@@ -1,12 +1,12 @@
-package org.io.spring.product;
+package org.io.spring.domain.product;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum ProductType {
 
-  HANDMADTE("제조 음료"),
-  BOTTEL("병 음료"),
+  HANDMADE("제조 음료"),
+  BOTTLE("병 음료"),
   BAKERY("베이커리");
 
   private final String text;
