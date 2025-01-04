@@ -1,12 +1,10 @@
 --- 
 
 #### Test Driven Development
-
 - RED(실패하는 테스트 작성)
 - GREEN(테스트 통과 최소한의 코딩)
 - REFACTOR(구현 코드 개선 테스트 통과 유지)
-
-RED > GREEN > REFACTOR
+- RED > GREEN > REFACTOR
 
 ---
 
