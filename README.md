@@ -1,5 +1,3 @@
---- 
-
 #### Test Driven Development
 - RED(실패하는 테스트 작성)
 - GREEN(테스트 통과 최소한의 코딩)
@@ -43,7 +41,7 @@
 --- 
 
 #### Response Object
-Entity는 BaseEntity를 상속받아 조회 시 필요없는 날짜 정보를 포함하고있다.
+Entity는 BaseEntity를 상속받아 조회 시 필요없는 날짜 정보를 포함하고있다.  
 필요한 정보만 추출하기 위해 Response 객체로 데이터 가공
 
 ---
