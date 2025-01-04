@@ -41,7 +41,27 @@
 --- 
 
 #### Response Object
-Entity는 BaseEntity를 상속받아 조회 시 필요없는 날짜 정보를 포함하고있다.  
-필요한 정보만 추출하기 위해 Response 객체로 데이터 가공
+Entity는 BaseEntity를 상속받아 조회 시 필요없는   
+날짜 정보를 포함하고있다.  
+필요한 정보만 추출하기 위해 Response 객체로 캡슐화 한다.
 
 ---
+
+#### Persistence Layer
+- Data Acceess의 역할
+- 비즈니스 가공 로직이 포함되어서는 안 된다.  
+  Data에 대한 CRUD에만 집중한 레이어
+
+#### Business Layer
+- 비즈니스 로직을 구현하는 역할
+- Persistence Layer와의 상호작용(Data를 읽고 쓰는 행위)을 통해  
+  비즈니스 로직을 전개시킨다.
+- 트랜잭션을 보장해야 한다.
+
+#### Repository test
+- Persistenct Layer
+
+#### Service test
+- Business Layer + Persistence Layer
+
+--- 

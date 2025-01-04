@@ -1,4 +1,4 @@
-package org.io.spring.api.product;
+package org.io.spring.api.service.product;
 
 import java.util.List;
 import java.util.stream.Collectors;
