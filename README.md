@@ -65,3 +65,7 @@ Entity는 BaseEntity를 상속받아 조회 시 필요없는
 - Business Layer + Persistence Layer
 
 --- 
+
+### @DataJpaTest, @SpringBootTest
+- @DataJpaTest 자동 Transactional Rollback
+- @SpringBootTest @AfterEach를 사용하여 tearDown

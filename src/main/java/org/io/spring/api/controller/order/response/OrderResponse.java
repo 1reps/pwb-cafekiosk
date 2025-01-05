@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
-import org.io.spring.api.product.response.ProductResponse;
+import org.io.spring.api.controller.product.response.ProductResponse;
 import org.io.spring.domain.order.Order;
 
 @Getter

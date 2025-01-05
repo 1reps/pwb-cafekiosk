@@ -3,7 +3,7 @@ package org.io.spring.api.service.product;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.io.spring.api.product.response.ProductResponse;
+import org.io.spring.api.controller.product.response.ProductResponse;
 import org.io.spring.domain.product.Product;
 import org.io.spring.domain.product.ProductRepository;
 import org.io.spring.domain.product.ProductSellingStatus;

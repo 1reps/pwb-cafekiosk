@@ -9,28 +9,42 @@ import java.time.LocalDateTime;
 import java.util.List;
 import org.io.spring.api.controller.order.request.OrderCreateRequest;
 import org.io.spring.api.controller.order.response.OrderResponse;
+import org.io.spring.domain.order.OrderRepository;
+import org.io.spring.domain.orderproduct.OrderProductRepository;
 import org.io.spring.domain.product.Product;
 import org.io.spring.domain.product.ProductRepository;
 import org.io.spring.domain.product.ProductType;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 @ActiveProfiles("test")
 @SpringBootTest
-//@DataJpaTest
+// @DataJpaTest
 class OrderServiceTest {
 
-  private static final Logger log = LoggerFactory.getLogger(OrderServiceTest.class);
+  @Autowired
+  private OrderService orderService;
+
   @Autowired
   private ProductRepository productRepository;
 
   @Autowired
-  private OrderService orderService;
+  private OrderRepository orderRepository;
+
+  @Autowired
+  private OrderProductRepository orderProductRepository;
+
+  @AfterEach
+  void tearDown() {
+    // productRepository.deleteAll();
+    orderProductRepository.deleteAllInBatch();
+    productRepository.deleteAllInBatch();
+    orderRepository.deleteAllInBatch();
+  }
 
   @DisplayName("주문번호 리스트를 받아 주문을 생성한다.")
   @Test
@@ -63,16 +77,6 @@ class OrderServiceTest {
         );
   }
 
-  private Product createdProduct(ProductType type, String productNumber, int price) {
-    return Product.builder()
-        .type(type)
-        .productNumber(productNumber)
-        .price(price)
-        .sellingStatus(SELLING)
-        .name("메뉴 이름")
-        .build();
-  }
-
   @DisplayName("중복되는 상품번호 리스트로 주문을 생성할 수 있다.")
   @Test
   void createOrderWithProduct() {
@@ -100,7 +104,17 @@ class OrderServiceTest {
             tuple("001", 1000),
             tuple("001", 1000)
         );
-
   }
+
+  private Product createdProduct(ProductType type, String productNumber, int price) {
+    return Product.builder()
+        .type(type)
+        .productNumber(productNumber)
+        .price(price)
+        .sellingStatus(SELLING)
+        .name("메뉴 이름")
+        .build();
+  }
+
 
 }

@@ -1,4 +1,4 @@
-package org.io.spring.api.product.response;
+package org.io.spring.api.controller.product.response;
 
 import lombok.Builder;
 import lombok.Getter;
