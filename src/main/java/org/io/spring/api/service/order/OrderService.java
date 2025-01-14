@@ -45,7 +45,7 @@ public class OrderService {
     List<String> stockProductNumbers = extractStockProductNumbers(products);
 
     Map<String, Stock> stockMap = createStockMapBy(productNumbers);
-    Map<String, Long> productCountingMap = createCouningMapBy(stockProductNumbers);
+    Map<String, Long> productCountingMap = createCountingMapBy(stockProductNumbers);
 
     HashSet<String> distinctStockProductNumbers = new HashSet<>(stockProductNumbers);
     for (String stockProductNumber : distinctStockProductNumbers) {
@@ -59,7 +59,7 @@ public class OrderService {
     }
   }
 
-  private static Map<String, Long> createCouningMapBy(List<String> stockProductNumbers) {
+  private static Map<String, Long> createCountingMapBy(List<String> stockProductNumbers) {
     return stockProductNumbers.stream()
         .collect(groupingBy(p -> p, counting()));
   }
