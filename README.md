@@ -69,3 +69,13 @@ Entity는 BaseEntity를 상속받아 조회 시 필요없는
 #### @DataJpaTest, @SpringBootTest
 - @DataJpaTest 자동 Transactional Rollback
 - @SpringBootTest @AfterEach를 사용하여 tearDown
+
+---
+
+#### Checked Exception 체크시 유의사항
+- Service Layer와 Unit Layer의 Checked Exception 작성시  
+  같은 Checked Exception 이라도 다른 관점에서 봐야한다.  
+  다른 서비스에서 재사용할 수 있는 메서드일 경우  
+  단위 테스트로서의 테스트 관점을 보장해줘야한다.
+
+--- 
