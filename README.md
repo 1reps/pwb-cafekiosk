@@ -47,6 +47,12 @@ Entity는 BaseEntity를 상속받아 조회 시 필요없는
 
 ---
 
+#### Presentation Layer
+- 외부 세계의 요청을 가장 먼저 받는 계층
+- 파라미터에 대한 최소한의 검증을 수행한다.
+- Mocking(Business Layer + Persistence Layer)  
+  Presentation Layer에만 집중하기 위하여 Mocking Test
+
 #### Persistence Layer
 - Data Acceess의 역할
 - 비즈니스 가공 로직이 포함되어서는 안 된다.  
@@ -57,6 +63,8 @@ Entity는 BaseEntity를 상속받아 조회 시 필요없는
 - Persistence Layer와의 상호작용(Data를 읽고 쓰는 행위)을 통해  
   비즈니스 로직을 전개시킨다.
 - 트랜잭션을 보장해야 한다.
+
+--- 
 
 #### Repository test
 - Persistenct Layer
@@ -79,3 +87,12 @@ Entity는 BaseEntity를 상속받아 조회 시 필요없는
   단위 테스트로서의 테스트 관점을 보장해줘야한다.
 
 --- 
+
+#### CQRS
+- Command  
+  쓰기 전용
+- Query 모델  
+  읽기 전용(Read Only)  
+- Service를 분리하는 방식
+- Service 전역에 @Transactional(readOnly = true)  
+  Command 메서드 영역에만 @Transactional 작성 
