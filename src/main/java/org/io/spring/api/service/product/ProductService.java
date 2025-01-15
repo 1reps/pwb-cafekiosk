@@ -26,7 +26,7 @@ public class ProductService {
   private final ProductRepository productRepository;
 
   @Transactional
-  public ProductResponse createProduct(ProductCreateRequest request) {
+  public ProductResponse createProduct(ProductCreateServiceRequest request) {
     String nextProductNumber = createNextProductNumber();
 
     Product product = request.toEntity(nextProductNumber);
