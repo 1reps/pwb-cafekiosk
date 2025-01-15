@@ -5,6 +5,7 @@ import static org.io.spring.domain.order.OrderStatus.PAYMENT_COMPLETED;
 import static org.io.spring.domain.product.ProductSellingStatus.SELLING;
 import static org.io.spring.domain.product.ProductType.HANDMADE;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,7 +22,6 @@ import org.io.spring.domain.product.ProductType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -73,9 +73,11 @@ class OrderStatisticsServiceTest {
         Order order4 = createPaymentCompletedOrder(LocalDateTime.of(2025, 1, 7, 0, 0, 0), products);
 
         // stubbing
-        Mockito.when(
-                mailSendClient.sendEmail(any(String.class), any(String.class), any(String.class), any(String.class))
-            )
+        when(
+            mailSendClient.sendEmail(any(String.class),
+                any(String.class),
+                any(String.class),
+                any(String.class)))
             .thenReturn(true);
 
         // when
