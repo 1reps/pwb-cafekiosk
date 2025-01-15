@@ -73,11 +73,10 @@ class OrderStatisticsServiceTest {
         Order order4 = createPaymentCompletedOrder(LocalDateTime.of(2025, 1, 7, 0, 0, 0), products);
 
         // stubbing
-        when(
-            mailSendClient.sendEmail(any(String.class),
-                any(String.class),
-                any(String.class),
-                any(String.class)))
+        when(mailSendClient.sendEmail(any(String.class),
+            any(String.class),
+            any(String.class),
+            any(String.class)))
             .thenReturn(true);
 
         // when
