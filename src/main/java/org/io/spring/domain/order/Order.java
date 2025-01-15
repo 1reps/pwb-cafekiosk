@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.io.spring.domain.BaseEntity;
@@ -28,36 +29,41 @@ import org.io.spring.domain.product.Product;
 @Getter
 public class Order extends BaseEntity {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  @Enumerated(EnumType.STRING)
-  private OrderStatus orderStatus;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
-  private int totalPrice;
+    private int totalPrice;
 
-  private LocalDateTime registeredDateTime;
+    private LocalDateTime registeredDateTime;
 
-  @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-  private List<OrderProduct> orderProducts = new ArrayList<>();
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderProduct> orderProducts = new ArrayList<>();
 
-  public Order(List<Product> products, LocalDateTime registeredDateTime) {
-    this.orderStatus = INIT;
-    this.totalPrice = calculateTotalPrice(products);
-    this.registeredDateTime = registeredDateTime; // 테스트하기 어려워지기 때문에 파라미터로 받음
-    this.orderProducts = products.stream()
-        .map(product -> new OrderProduct(this, product))
-        .collect(Collectors.toList());
-  }
+    @Builder
+    public Order(List<Product> products, OrderStatus orderStatus, LocalDateTime registeredDateTime) {
+        this.orderStatus = orderStatus;
+        this.totalPrice = calculateTotalPrice(products);
+        this.registeredDateTime = registeredDateTime;
+        this.orderProducts = products.stream()
+            .map(product -> new OrderProduct(this, product))
+            .collect(Collectors.toList());
+    }
 
-  public static Order create(List<Product> products, LocalDateTime registeredDateTime) {
-    return new Order(products, registeredDateTime);
-  }
+    public static Order create(List<Product> products, LocalDateTime registeredDateTime) {
+        return Order.builder()
+            .orderStatus(INIT)
+            .products(products)
+            .registeredDateTime(registeredDateTime)
+            .build();
+    }
 
-  private static int calculateTotalPrice(List<Product> products) {
-    return products.stream()
-        .mapToInt(Product::getPrice)
-        .sum();
-  }
+    private static int calculateTotalPrice(List<Product> products) {
+        return products.stream()
+            .mapToInt(Product::getPrice)
+            .sum();
+    }
 }

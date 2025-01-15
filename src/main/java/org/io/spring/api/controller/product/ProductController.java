@@ -16,17 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductController {
 
-  private final ProductService productService;
+    private final ProductService productService;
 
-  @PostMapping("/api/v1/products/new")
-  public ApiResponse<ProductResponse> createProduct(
-      @Valid @RequestBody ProductCreateRequest request) {
-    return ApiResponse.ok(productService.createProduct(request.toServiceRequest()));
-  }
+    @PostMapping("/api/v1/products/new")
+    public ApiResponse<ProductResponse> createProduct(
+        @Valid @RequestBody ProductCreateRequest request) {
+        return ApiResponse.ok(productService.createProduct(request.toServiceRequest()));
+    }
 
-  @GetMapping("/api/v1/products/selling")
-  public ApiResponse<List<ProductResponse>> getSellingProducts() {
-    return ApiResponse.ok(productService.getSellingProducts());
-  }
+    @GetMapping("/api/v1/products/selling")
+    public ApiResponse<List<ProductResponse>> getSellingProducts() {
+        return ApiResponse.ok(productService.getSellingProducts());
+    }
 
 }
