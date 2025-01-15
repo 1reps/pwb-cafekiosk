@@ -96,3 +96,13 @@ Entity는 BaseEntity를 상속받아 조회 시 필요없는
 - Service를 분리하는 방식
 - Service 전역에 @Transactional(readOnly = true)  
   Command 메서드 영역에만 @Transactional 작성 
+
+---
+
+#### Controller Layer DTO와 Service Layer DTO의 의존 관계..?
+- Controller가 Service를 주입받아서 호출한다.
+- 상위 Layer는 하위 Layer의 호출부이기 때문에 당연히 알고있지만  
+  하위 Layer는 상위 Layer가 하는 일을 알고 있는것은 좋지 않을 수 있다.
+- Layer 별 DTO를 고려해보자(Clean POJO DTO), 책임분리
+
+--- 

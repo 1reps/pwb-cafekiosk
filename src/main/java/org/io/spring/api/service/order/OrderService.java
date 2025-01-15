@@ -30,7 +30,7 @@ public class OrderService {
   private final OrderRepository orderRepository;
   private final StockRepository stockRepository;
 
-  public OrderResponse createOrder(OrderCreateRequest request, LocalDateTime registeredDateTime) {
+  public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) {
     List<String> productNumbers = request.getProductNumbers();
     List<Product> products = findProductsBy(productNumbers); // 중복이 제거된 products
 
