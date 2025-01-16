@@ -10,6 +10,7 @@ import static org.io.spring.domain.product.ProductType.HANDMADE;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import org.io.cafekiosk.IntegrationTestSupport;
 import org.io.spring.api.controller.order.request.OrderCreateRequest;
 import org.io.spring.api.controller.order.response.OrderResponse;
 import org.io.spring.domain.order.OrderRepository;
@@ -23,14 +24,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
-@ActiveProfiles("test")
-// @Transactional
-@SpringBootTest
-// @DataJpaTest
-class OrderServiceTest {
+class OrderServiceTest extends IntegrationTestSupport {
 
     @Autowired
     private OrderService orderService;
