@@ -5,7 +5,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import org.io.spring.client.MailSendClient;
 import org.io.spring.domain.history.MailSendHistory;
@@ -13,6 +12,7 @@ import org.io.spring.domain.history.MailSendHistoryRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -32,16 +32,17 @@ class MailServiceTest {
     @DisplayName("메일 전송 테스트")
     @Test
     void sendMail() {
-        // given
         // MailSendClient mailSendClient = mock(MailSendClient.class);
         // MailSendHistoryRepository mailSendHistoryRepository = mock(MailSendHistoryRepository.class);
         // MailService mailService = new MailService(mailSendClient, mailSendHistoryRepository);
 
-        when(mailSendClient.sendEmail(anyString(),
-            anyString(),
-            anyString(),
-            anyString()))
-            .thenReturn(true);
+        // when(mailSendClient.sendEmail(anyString(), anyString(), anyString(), anyString()))
+        //     .thenReturn(true);
+
+        // given
+        BDDMockito.given(mailSendClient.sendEmail(anyString(), anyString(), anyString(), anyString()))
+            .willReturn(true);
+
         // when
         boolean result = mailService.sendMail("", "", "", "");
 
